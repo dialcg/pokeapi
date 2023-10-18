@@ -35,10 +35,10 @@ def extract_pokemon() -> None:
 
         if api_response.status_code == 201:
             logger.info(f'Pokemon succesfully saved. [name: {pokemon_data["name"]}]')
-            pokeapi_task_saved.send(sender='extraer_pokemon', pokemon=pokemon_data["name"])
+            pokeapi_task_saved.send(sender='extract_pokemon', pokemon=pokemon_data["name"])
         elif api_response.status_code == 400:
             logger.info(f'Pokemon was not saved, trying a new one. [name: {pokemon_data["name"]}]')
-            pokeapi_task_failed.send(sender='extraer_pokemon', pokemon_attrs=pokemon_data)
+            pokeapi_task_failed.send(sender='extract_pokemon', pokemon_attrs=pokemon_data)
         
     else:
-        logger.info('Error al extraer el Pokemon de https://pokeapi.co')
+        logger.info('There was an issue trying to get a random Pokemon from https://pokeapi.co')
