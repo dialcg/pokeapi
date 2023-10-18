@@ -143,7 +143,7 @@ celery -A poketasks worker -l info
 
 
 
-1. Inicia Celery Beat para la planificación de tareas periódicas:
+1. Inicia Celery Beat para la ejecucición de la tarea de PokeAPI periodica:
 
 
 ```
