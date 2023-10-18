@@ -4,7 +4,7 @@
 ## **Estructura del Proyecto**
 
 El proyecto está organizado usando varios approaches de clean architecture. Debido a la simplicidad del proyecto, el foco
-se hizo en la divisón de data logic (repositirios) y service oriented architecture (los servicios para acceder a los repos).
+se hizo en la divisón de data access logic (repositorios) y service oriented architecture (los servicios para acceder a los repos).
 
 
 ```
