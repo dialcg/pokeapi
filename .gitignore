@@ -1,0 +1,30 @@
+# Virtual Environment
+venv/
+myenv/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+
+# Ignore database file
+db.sqlite3
+
+# Ignore log files
+*.log
+
+# Ignore media files (uploads)
+media/
+
+# Ignore static files
+staticfiles/
+static/
+assets/
+
+# Ignore development-specific files
+*.swp
+.DS_Store
+
+*.rdb
+
+*.db

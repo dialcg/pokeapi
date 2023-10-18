@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col m-2">
+        <p>Puedes agregar nuevos pokemones a través del <a href="/admin/" target="_blank">administrador de Django</a></p>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pokemon in object_list %}
+                <tr>
+                    <td>{{ pokemon.id }}</td>
+                    <td>{{ pokemon.name }}</td>
+                    <td>
+                        <a href="{% url 'pokemon-detail' pokemon.id %}">Ver habilidades</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Poketask API
+  version: 1.0.0
+  description: Poketask API
+paths:
+  /api/pokemon/:
+    get:
+      operationId: pokemon_list
+      description: |-
+        API view for listing and creating Pokémon.
+
+        This view allows authenticated users to list Pokémon and create new Pokémon entries.
+
+        Attributes:
+            serializer_class (serializers.Serializer): The serializer class used for Pokémon objects.
+            authentication_classes (list): The authentication classes required for this view.
+            permission_classes (list): The permission classes required for this view.
+
+        Methods:
+            get_queryset(self): Get the queryset of Pokémon from the service.
+            perform_create(self, serializer): Create a new Pokémon using the service.
+      tags:
+      - pokemon
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pokemon'
+          description: ''
+    post:
+      operationId: pokemon_create
+      description: |-
+        API view for listing and creating Pokémon.
+
+        This view allows authenticated users to list Pokémon and create new Pokémon entries.
+
+        Attributes:
+            serializer_class (serializers.Serializer): The serializer class used for Pokémon objects.
+            authentication_classes (list): The authentication classes required for this view.
+            permission_classes (list): The permission classes required for this view.
+
+        Methods:
+            get_queryset(self): Get the queryset of Pokémon from the service.
+            perform_create(self, serializer): Create a new Pokémon using the service.
+      tags:
+      - pokemon
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pokemon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pokemon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Pokemon'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pokemon'
+          description: ''
+components:
+  schemas:
+    Pokemon:
+      type: object
+      description: Serialize Pokemon info to expose records to the API.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+      required:
+      - id
+      - name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <h1>{{object.name}}</h1>
+    </div>
+    <h3>Habilidades: </h3>
+    <a href="{% url 'ability-create' pokemon.id %}">Agregar nueva habilidad</a>
+    <input type="text" id="search" class="form-control mt-2" placeholder="Buscar habilidad">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ability in object.pokemonability_set.all %}
+                <tr>
+                    <td>{{ ability.id }}</td>
+                    <td>{{ ability.name }}</td>
+                    <td>
+                        <a href="{% url 'ability-update' ability.id %}" class="mt-1">Editar</a> 
+                        <a href="{% url 'ability-delete' ability.id %}" class="mt-1">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="1">No se encontraron habilidades para {{pokemon.name}}.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("search");
+            const tableRows = document.querySelectorAll("tbody tr");
+    
+            searchInput.addEventListener("input", function () {
+                const searchText = searchInput.value.toLowerCase();
+    
+                tableRows.forEach(function (row) {
+                    const abilityName = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+                    if (abilityName.includes(searchText)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

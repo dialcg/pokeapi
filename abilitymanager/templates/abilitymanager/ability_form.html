@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% if 'pokemon' in request.path %}Crear{% else %}Actualizar{% endif %} Habilidad</button>
+    </form>
+{% endblock %}
